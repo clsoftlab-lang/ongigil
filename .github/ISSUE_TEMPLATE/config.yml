@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Questions & discussion
+    url: https://github.com/clsoftlab-lang/ongigil/discussions
+    about: "Ask a question, share an idea, or say hello — great for anything that isn't a specific bug."
+  - name: 🔒 Report a security or location-privacy issue (private)
+    url: https://github.com/clsoftlab-lang/ongigil/blob/main/SECURITY.md
+    about: "Please do NOT open a public issue for security or privacy vulnerabilities — see SECURITY.md."

@@ -1,0 +1,38 @@
+온기길 (Ongigil) — a warm path for elderly recyclable-paper collectors
+Copyright 2026 CLSOFTLAB (씨엘소프트랩), Dr. Lee Il-guk (이일국)
+
+This product includes software developed by CLSOFTLAB and contributors
+(LWJ, LMJ) as part of the 온기길 (Ongigil) project.
+
+Licensing
+---------
+- Software is licensed under the Apache License, Version 2.0 ("Apache-2.0").
+  See the LICENSE file and LICENSES/Apache-2.0.txt.
+- Documentation (the docs/ directory and other prose) is licensed under the
+  Creative Commons Attribution 4.0 International License ("CC BY 4.0").
+  See LICENSES/CC-BY-4.0.txt.
+
+Attribution for documentation reuse:
+  "온기길 (Ongigil) © 2026 CLSOFTLAB, Dr. Lee Il-guk — CC BY 4.0"
+
+Design collaboration
+--------------------
+온기길 was designed and documented with the assistance of Claude, an AI
+assistant by Anthropic. 온기길 is an independent community project by
+CLSOFTLAB. It is NOT an Anthropic product and is not endorsed by or
+affiliated with Anthropic.
+
+No keys, no secrets
+-------------------
+This repository ships with NO API keys or secrets. The default voice
+guidance ("homing" mode) runs with no keys. An optional walking-directions
+provider key, if used, is supplied by the operator via environment/config
+and is never committed to this repository.
+
+Third-party components
+----------------------
+The backend depends on open-source Python packages (including FastAPI,
+Starlette, Uvicorn, Pydantic, SQLModel and their dependencies), each
+distributed under its own license (predominantly MIT/BSD/Apache-2.0).
+Those licenses apply to those components. See each package's distribution
+for its full license text.

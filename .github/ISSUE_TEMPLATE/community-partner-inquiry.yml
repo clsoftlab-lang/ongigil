@@ -1,0 +1,54 @@
+name: "🤝 Community-partner inquiry"
+description: "For community centres, social workers, or organisations who'd like to try or help with 온기길."
+title: "[Partner]: "
+labels: ["community"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome, and thank you for your interest. 온기길 is a free public good — there is
+        no cost and nothing to buy. We'd love to help you try it with the people you
+        support, or work together to test it with real elderly users.
+
+        Please share only what you're comfortable posting publicly. If you'd rather not
+        post details here, just say hello and ask us to reach out, or email
+        **hello@clsoftlab.net**.
+  - type: textarea
+    id: about
+    attributes:
+      label: Tell us a little about you
+      description: Your organisation or role, and the community you work with.
+      placeholder: "We're a senior community centre in ... supporting elderly residents, some of whom collect recyclables."
+    validations:
+      required: true
+  - type: dropdown
+    id: interest
+    attributes:
+      label: How would you like to be involved?
+      multiple: true
+      options:
+        - Try 온기길 with people we support
+        - Help test with real elderly users
+        - Give accessibility / wording feedback
+        - Help spread the word locally
+        - Advise on safety or local needs
+        - Just learning for now
+    validations:
+      required: true
+  - type: textarea
+    id: needs
+    attributes:
+      label: What would make this useful for you?
+      description: Anything you'd need, worry about, or hope for.
+  - type: input
+    id: contact
+    attributes:
+      label: How can we reach you? (optional)
+      description: A public issue is visible to everyone — share contact details only if you're comfortable, or ask us to reply here.
+  - type: checkboxes
+    id: ack
+    attributes:
+      label: Just so you know
+      options:
+        - label: "I understand 온기길 is free, non-commercial, and does not sell data or show ads."
+          required: true

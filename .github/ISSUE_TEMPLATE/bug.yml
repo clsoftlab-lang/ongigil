@@ -1,0 +1,65 @@
+name: "🐞 Bug report"
+description: "Something isn't working the way it should."
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping make 온기길 better. Please do **not** include anyone's
+        precise location, home address, or personal details in this report.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear, plain description of the problem.
+      placeholder: "When I tapped '안내 시작', the voice never started speaking."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the app at ...
+        2. Tap ...
+        3. See ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect instead?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part?
+      options:
+        - App (collector screen)
+        - App (reporter screen)
+        - App (helper / settings)
+        - Voice guidance
+        - Backend / API
+        - Docs
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device & browser
+      placeholder: "e.g. Samsung Galaxy A14, Chrome 120 / iPhone 12, Safari"
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Console errors, screenshots (blur out any location), etc.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: "I have not included anyone's precise location or personal details."
+          required: true

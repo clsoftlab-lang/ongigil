@@ -1,0 +1,60 @@
+name: "♿ Accessibility feedback"
+description: "Tell us what was hard to see, hear, read, or tap — this is the most valuable feedback we get."
+title: "[A11y]: "
+labels: ["accessibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Accessibility feedback is the heart of this project. Whether you are an elderly
+        user, a helper, a social worker, or a tester — thank you. Plain, honest notes
+        about what was difficult help us more than anything.
+
+        Please don't include anyone's personal details or precise location.
+  - type: textarea
+    id: difficulty
+    attributes:
+      label: What was hard?
+      description: Text too small? Voice too fast or unclear? A confusing word? A button hard to find or tap?
+      placeholder: "The distance voice spoke too quickly to catch the number."
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of difficulty?
+      multiple: true
+      options:
+        - Text size / readability
+        - Contrast / colour
+        - Voice speed or clarity
+        - Confusing wording
+        - Buttons too small / hard to tap
+        - Too many steps / got lost
+        - Sound / volume
+        - Screen staying on / dimming
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: perspective
+    attributes:
+      label: Who is giving this feedback?
+      options:
+        - An elderly user (or on their behalf, with consent)
+        - A helper / family member
+        - A social worker / community-centre staff
+        - A tester / contributor
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: context
+    attributes:
+      label: Context
+      placeholder: "e.g. outdoors in bright sunlight, phone in pocket, Android"
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: What would help?
+      description: Any idea for how to make it easier. It's fine to leave this blank.

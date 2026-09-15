@@ -1,0 +1,119 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+# 온기길 runs with NO keys. Every job is guarded to pass cleanly when a folder
+# has no tests yet, so the pipeline stays green while the app and backend are
+# built out in parallel.
+
+jobs:
+  backend:
+    name: Backend (pytest)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install backend (with dev extras)
+        run: pip install -e "backend[dev]"
+
+      - name: Run backend tests (skip if none)
+        shell: bash
+        run: |
+          if [ -d backend/tests ] && find backend/tests -name 'test_*.py' | grep -q .; then
+            pytest backend/tests
+          else
+            echo "No backend tests yet — skipping."
+          fi
+
+  app:
+    name: App (node --test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run app tests (skip if none)
+        shell: bash
+        run: |
+          if [ -d app/tests ] && find app/tests -name '*.test.js' -o -name '*.test.mjs' | grep -q .; then
+            # IMPORTANT: node --test needs a FILE GLOB, not a directory.
+            # nullglob lets an empty extension expand to nothing rather than a literal.
+            shopt -s nullglob
+            files=(app/tests/*.test.js app/tests/*.test.mjs)
+            node --test "${files[@]}"
+          else
+            echo "No app tests yet — skipping."
+          fi
+
+  sanity:
+    name: Sanity (YAML / JSON / HTML parse)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: pip install "PyYAML>=6"
+
+      - name: Parse YAML / JSON / HTML (incl. dot-dirs like .github)
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os, sys, json, yaml
+          from html.parser import HTMLParser
+
+          SKIP = {".git", "node_modules", "__pycache__", ".pytest_cache",
+                  ".mypy_cache", ".ruff_cache", ".venv", "venv", "dist", "build"}
+
+          def walk(exts):
+              # os.walk sees dot-directories (glob '**' does not), so .github is covered.
+              for root, dirs, files in os.walk("."):
+                  dirs[:] = [d for d in dirs if d not in SKIP]
+                  for name in files:
+                      if name.lower().endswith(exts):
+                          yield os.path.join(root, name)
+
+          bad = 0
+          print("=== YAML ===")
+          for f in sorted(walk((".yml", ".yaml"))):
+              try:
+                  with open(f, encoding="utf-8") as fh: list(yaml.safe_load_all(fh))
+                  print("ok  ", f)
+              except Exception as e:
+                  print("FAIL", f, "->", e); bad += 1
+          print("=== JSON ===")
+          for f in sorted(walk((".json",))):
+              try:
+                  with open(f, encoding="utf-8") as fh: json.load(fh)
+                  print("ok  ", f)
+              except Exception as e:
+                  print("FAIL", f, "->", e); bad += 1
+          print("=== HTML ===")
+          for f in sorted(walk((".html", ".htm"))):
+              try:
+                  with open(f, encoding="utf-8") as fh: HTMLParser().feed(fh.read())
+                  print("ok  ", f)
+              except Exception as e:
+                  print("FAIL", f, "->", e); bad += 1
+          print("TOTAL BAD:", bad)
+          sys.exit(1 if bad else 0)
+          PY

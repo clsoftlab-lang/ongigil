@@ -1,0 +1,52 @@
+name: "💡 Feature or idea"
+description: "Suggest an improvement or a new idea."
+title: "[Idea]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideas are welcome — especially ones that make 온기길 kinder, simpler, or more
+        accessible for elderly users. Please keep our principles in mind: no money,
+        no ads, no data sale, privacy by default, honesty about limits.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem or need does this address?
+      description: Who is helped, and how?
+      placeholder: "Collectors who don't have a compass sometimes walk the wrong way at first because..."
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: What would you like to see?
+    validations:
+      required: true
+  - type: dropdown
+    id: who
+    attributes:
+      label: Who benefits most?
+      options:
+        - Collectors (elderly users)
+        - Reporters (citizens / shops)
+        - Helpers (family / social workers / community centres)
+        - Operators / deployers
+        - Contributors / developers
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Does it fit our principles?
+      description: Tick the ones you're confident about (it's OK if you're unsure — we'll discuss).
+      options:
+        - label: "Keeps privacy & dignity intact (no tracking, no precise-location exposure)."
+        - label: "Doesn't require paid keys for the core experience (homing mode stays free)."
+        - label: "Doesn't overstate what the app can do (e.g. screen-off voice)."
+        - label: "No ads, no data sale, no payments."

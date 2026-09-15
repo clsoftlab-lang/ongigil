@@ -1,0 +1,59 @@
+name: "⚠️ Unsafe spot / safety concern"
+description: "Report a spot or situation that could put a collector in danger — or a safety gap in the app."
+title: "[Safety]: "
+labels: ["safety"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Safety comes first. Use this to flag a **pattern** or **concern** — for example,
+        spots that tend to sit on busy roads, or a way the app could nudge someone into
+        danger.
+
+        **Please do NOT post a precise location or address.** Describe the situation in
+        general terms (e.g. "spots on the main road near a market at night"). If someone
+        is in immediate danger, contact local emergency services, not this tracker.
+  - type: textarea
+    id: concern
+    attributes:
+      label: What is the safety concern?
+      placeholder: "Guidance can point across a busy road with no crossing nearby."
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type of concern
+      options:
+        - Spot near heavy traffic / a dangerous road
+        - Night / low-visibility risk
+        - Spot on private property or a restricted area
+        - App wording could encourage a risky move
+        - Guidance accuracy could mislead
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: How serious?
+      options:
+        - Low — worth noting
+        - Medium — should be addressed
+        - High — could cause harm soon
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: What might help?
+      description: e.g. "hide spots on busy roads", a clearer caution, etc.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy & safety check
+      options:
+        - label: "I have described this in general terms and have NOT posted a precise location or address."
+          required: true
+        - label: "This is not an emergency — I understand this tracker is not monitored in real time."
+          required: true

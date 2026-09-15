@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 CLSOFTLAB (씨엘소프트랩), Dr. Lee Il-guk (이일국)
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ongigil-backend"
+version = "0.1.0"
+description = "온기길 (Ongigil) backend — a warm-path finder for elderly recyclable-paper collectors. Runs with no keys."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "CLSOFTLAB (씨엘소프트랩), Dr. Lee Il-guk (이일국)" },
+]
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn>=0.29",
+  "pydantic>=2.6",
+  "sqlmodel>=0.0.16",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "httpx>=0.27",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ongigil*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

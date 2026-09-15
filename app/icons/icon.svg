@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="온기길 아이콘">
+  <!-- SPDX-License-Identifier: Apache-2.0
+       Copyright 2026 CLSOFTLAB (씨엘소프트랩), Dr. Lee Il-guk (이일국) -->
+  <rect width="512" height="512" rx="96" fill="#7a4a12"/>
+  <!-- upward guidance arrow (green = go) -->
+  <g fill="#57c778">
+    <polygon points="256,104 372,248 300,248 300,300 212,300 212,248 140,248"/>
+    <rect x="212" y="300" width="88" height="120" rx="14"/>
+  </g>
+  <!-- sound waves -->
+  <g fill="none" stroke="#ffe6c2" stroke-width="16" stroke-linecap="round" opacity="0.9">
+    <path d="M400 196 a70 70 0 0 1 0 120"/>
+    <path d="M430 166 a112 112 0 0 1 0 180"/>
+  </g>
+</svg>
